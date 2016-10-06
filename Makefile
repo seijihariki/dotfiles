@@ -8,7 +8,7 @@ lcfiles := $(patsubst %,$(pwd)/%,$(files))
 install: $(hmfiles)
 
 $(home)/%: $(pwd)/%
-	ln -s $< $@
+	ln -fs $< $@
 	
 clean:
 	rm -rf $(hmfiles)
