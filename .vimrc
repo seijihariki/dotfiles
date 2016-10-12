@@ -20,7 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/Conque-GDB'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'FredKSchott/CoVim'
+Plugin 'tclem/vim-arduino'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,6 +78,8 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
 let g:airline_theme='dark'
+
+let g:vim_arduino_map_keys = 0
 
 set noswapfile
 
