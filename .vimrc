@@ -80,6 +80,14 @@ let g:airline_theme='dark'
 
 set noswapfile
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
 set mouse=a
 set t_Co=256
 hi Normal ctermbg=none
+
+" Highlight redundant whitespaces and tabs.
+highlight RedundantSpaces ctermbg=red
+match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+
