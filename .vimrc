@@ -90,4 +90,3 @@ hi Normal ctermbg=none
 " Highlight redundant whitespaces and tabs.
 highlight RedundantSpaces ctermbg=red
 match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
-
