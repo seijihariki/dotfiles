@@ -11,7 +11,7 @@ $(home)/%: $(pwd)/%
 	ln -fs $< $@
 
 gitsub:
-	git submodule --init
+	git submodule update --init
 	
 clean:
 	rm -rf $(hmfiles)
