@@ -1,0 +1,3 @@
+echo abrindo/fechando porta copos...
+eject -T
+echo "porta copos aberto/fechado :)"
