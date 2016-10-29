@@ -61,7 +61,11 @@ if [ "$PS1" ]; then
   fi
 
   # Configura a apar�ncia do prompt do shell
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+  if [ "$(whoami)" = "root" ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[01;34m\] \w #\[\033[00m\] '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+  fi
   PS2='> '
   export PS1 PS2
 
