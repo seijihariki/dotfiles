@@ -109,3 +109,4 @@ export LANG="en_US.utf8"
 export GDM_LANG="en_US.utf8"
 
 eval $(thefuck --alias)
+alias pmac="ifconfig | sed -E \"s/ +/ /g\" | grep -E \"^[^ ].*HWaddr\" | awk '{print \$1 \"\\t\" \$NF}'"
