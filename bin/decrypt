@@ -1,0 +1,21 @@
+if [ "$#" -ne 1 ]; then
+    echo -e "\033[31mUsage: $0 <file.gpg>\033[0m"
+    exit -1
+fi
+
+if [ ! -e "$1" ]; then
+    echo -e "\033[31m$1 Is not a file or directory\033[0m"
+    exit -2
+fi
+
+echo -e "\033[36mDecrypting... Enter passkey:\033[0m"
+status="OK"
+gpg "$1" || status=""
+if [ -z status ]; then
+    echo -e "\033[31mError decrypting\033[0m"
+fi
+echo -e "\033[36mUnzipping files...\033[0m"
+tar -zxvf "$(basename $1 .gpg)"
+echo -e "\033[36mDeleting files...\033[0m"
+rm -rf "$1" "$(basename $1 .gpg)"
+echo -e "\033[32mDecrypted!\033[0m"

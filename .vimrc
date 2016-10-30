@@ -20,6 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/Conque-GDB'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'othree/html5.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -90,4 +91,3 @@ hi Normal ctermbg=none
 " Highlight redundant whitespaces and tabs.
 highlight RedundantSpaces ctermbg=red
 match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
-

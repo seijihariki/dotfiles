@@ -61,7 +61,11 @@ if [ "$PS1" ]; then
   fi
 
   # Configura a apar�ncia do prompt do shell
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+  if [ "$(whoami)" = "root" ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[01;34m\] \w #\[\033[00m\] '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+  fi
   PS2='> '
   export PS1 PS2
 
@@ -100,6 +104,10 @@ else
     CNX=${BCyan}        # Connected on local machine.
 fi
 
+if [ -d "$HOME/scripts" ]; then
+    export PATH=$PATH:$HOME/scripts
+fi
+
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:$HOME/bin
@@ -107,5 +115,7 @@ export PATH=$PATH:$HOME/bin
 export LANGUAGE="en_US.utf8"
 export LANG="en_US.utf8"
 export GDM_LANG="en_US.utf8"
-
-eval $(thefuck --alias)
+if [ "$(which thefuck)" ]; then
+    eval $(thefuck --alias)
+fi
+alias pmac="ifconfig | sed -E \"s/ +/ /g\" | grep -E \"^[^ ].*HWaddr\" | awk '{print \$1 \"\\t\" \$NF}'"

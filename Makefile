@@ -1,4 +1,4 @@
-files := .fonts .vimrc .vim .bashrc .bash_profile .inputrc .profile
+files := bin .fonts .vimrc .vim .bashrc .bash_profile .inputrc .profile
 home := $(HOME)
 
 pwd := $(shell pwd)
