@@ -104,6 +104,10 @@ else
     CNX=${BCyan}        # Connected on local machine.
 fi
 
+if [ -d "$HOME/scripts" ]; then
+    export PATH=$PATH:$HOME/scripts
+fi
+
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:$HOME/bin
