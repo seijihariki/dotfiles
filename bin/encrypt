@@ -19,6 +19,10 @@ echo -e "\033[36mDeleting files...\033[0m"
 rm -rf "$fl"
 echo -e "\033[36mEncrypting... Enter passkey:\033[0m"
 gpg -c "$fl.tar.gz"
+if [ ! -e "$fl.tar.gz.gpg" ]; then
+    echo "\033[31mFailed to encrypt!\033[0m"
+    exit -3
+fi
 echo -e "\033[36mOverwriting .tar.gz...\033[0m"
 for k in "a b c"; do dd if=/dev/urandom of="$fl.tar.gz" bs=$(ls -l "$fl.tar.gz" | cut -d\  -f5) count=1 conv=notrunc; done
 echo -e "\033[36mDeleting .tar.gz...\033[0m"
