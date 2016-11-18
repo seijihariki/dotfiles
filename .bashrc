@@ -52,7 +52,7 @@ On_White='\e[47m'       # White
 
 NC="\e[m"               # Color Reset
 
-# Verifica se o shell � interativo.
+# Verifica se o shell ï¿½ interativo.
 if [ "$PS1" ]; then
 
   # Executa o ~/.bash_aliases, se existir.
@@ -60,7 +60,7 @@ if [ "$PS1" ]; then
     source ~/.bash_aliases
   fi
 
-  # Configura a apar�ncia do prompt do shell
+  # Configura a aparï¿½ncia do prompt do shell
   if [ "$(whoami)" = "root" ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[01;34m\] \w #\[\033[00m\] '
   else
@@ -119,3 +119,6 @@ if [ "$(which thefuck)" ]; then
     eval $(thefuck --alias)
 fi
 alias pmac="ifconfig | sed -E \"s/ +/ /g\" | grep -E \"^[^ ].*HWaddr\" | awk '{print \$1 \"\\t\" \$NF}'"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
