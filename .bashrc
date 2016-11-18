@@ -119,3 +119,4 @@ if [ "$(which thefuck)" ]; then
     eval $(thefuck --alias)
 fi
 alias pmac="ifconfig | sed -E \"s/ +/ /g\" | grep -E \"^[^ ].*HWaddr\" | awk '{print \$1 \"\\t\" \$NF}'"
+
