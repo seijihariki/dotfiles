@@ -112,7 +112,8 @@ if [ "$PS1" ]; then
   export PATH="$PATH:."
 
   # Prompt updates every commmand
-  export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}\[$PCOLOR\]\u@\h\[\033[01;34m\] \w $(git_branch)\[$BBlue$PTAG\]\[\033[00m\] "'
+  # export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}\[$PCOLOR\]\u@\h\[\033[01;34m\] \w $(git_branch)\[$BBlue$PTAG\]\[\033[00m\] "'
+  export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}\[$PCOLOR\]\u@\h\[\033[01;34m\] \w \[$BBlue$PTAG\]\[\033[00m\] "'
 fi
 
 # Utility functions
