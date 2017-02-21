@@ -58,6 +58,12 @@ NC="\[\e[m\]"               # Color Reset
 
 # Functions for prompt
 
+# Purple-enc info
+
+function pinfo () {
+  echo -e "$Purple($NC$@$Purple)$NC "
+}
+
 # Git functions
 
 function git_color {
@@ -81,11 +87,40 @@ function git_branch {
 
   if [[ $git_status =~ $on_branch ]]; then
     local branch=${BASH_REMATCH[1]}
-    echo -e "$Purple(${NC}git$Purple) $Purple($(git_color)$branch$Purple)$NC"
+    echo -e "$(pinfo git)$(pinfo $(git_color)$branch)"
   elif [[ $git_status =~ $on_commit ]]; then
     local commit=${BASH_REMATCH[1]}
-    echo -e "$Purple(${NC}git$Purple) $Purple($(git_color)$commit$Purple)$NC"
+    echo -e "$(pinfo git)$(pinfo $(git_color)$commit)"
   fi
+}
+
+# Complex prompt build
+
+function build_prompt {
+  local EXIT="$?"
+  PS1=''
+  
+  # Base prompt
+  PS1+="${debian_chroot:+($debian_chroot)}$PCOLOR\u@\h $BBlue\w "
+  
+  # Extra info
+  PS1+="$(pinfo 'Jobs: \j')"
+  
+  # VCS info
+  PS1+="$(git_branch)"
+
+  # Start second line
+  PS1+="\n"
+
+  # Last command exit code
+  if [ $EXIT != 0 ]; then
+    PS1+="$(pinfo $Red$EXIT)"
+  else
+    PS1+="$(pinfo $Green$EXIT)"
+  fi
+
+  # Second line
+  PS1+="$BBlue$PTAG$NC "
 }
 
 # If shell is interactive
@@ -105,14 +140,12 @@ if [ "$PS1" ]; then
     PTAG="#"
   fi
 
-  PS2='> '
   export PS1 PS2
+  PS2='> '
 
   export PATH="$PATH:."
 
-  # Prompt updates every commmand
-  # export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}$PCOLOR\u@\h\033[01;34m\] \w $(git_branch)\[$BBlue$PTAG\]\[\033[00m\] "'
-  export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}$PCOLOR\u@\h $BBlue\w $(git_branch) $BBlue$PTAG$NC "'
+  PROMPT_COMMAND=build_prompt
 fi
 
 # Utility functions
