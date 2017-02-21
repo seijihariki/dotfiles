@@ -1,4 +1,4 @@
-#
+]#
 # ~/.bashrc
 source /etc/profile
 
@@ -23,39 +23,39 @@ shopt -s histappend histreedit histverify
 shopt -s extglob
 
 # Normal Colors
-Black='\e[0;30m'        # Black
-Red='\e[0;31m'          # Red
-Green='\e[0;32m'        # Green
-Yellow='\e[0;33m'       # Yellow
-Blue='\e[0;34m'         # Blue
-Purple='\e[0;35m'       # Purple
-Cyan='\e[0;36m'         # Cyan
-White='\e[0;37m'        # White
-Ochre='\e[38;5;95m'     # Ochre
+Black='\[\e[0;30m\]'        # Black
+Red='\[\e[0;31m\]'          # Red
+Green='\[\e[0;32m\]'        # Green
+Yellow='\[\e[0;33m\]'       # Yellow
+Blue='\[\e[0;34m\]'         # Blue
+Purple='\[\e[0;35m\]'       # Purple
+Cyan='\[\e[0;36m\]'         # Cyan
+White='\[\e[0;37m\]'        # White
+Ochre='\[\e[38;5;95m\]'     # Ochre
 
 # Bold
-BBlack='\e[1;30m'       # Black
-BRed='\e[1;31m'         # Red
-BGreen='\e[1;32m'       # Green
-BYellow='\e[1;33m'      # Yellow
-BBlue='\e[1;34m'        # Blue
-BPurple='\e[1;35m'      # Purple
-BCyan='\e[1;36m'        # Cyan
-BWhite='\e[1;37m'       # White
-BOchre='\e[38;5;95m'    # Ochre
+BBlack='\[\e[1;30m\]'       # Black
+BRed='\[\e[1;31m\]'         # Red
+BGreen='\[\e[1;32m\]'       # Green
+BYellow='\[\e[1;33m\]'      # Yellow
+BBlue='\[\e[1;34m\]'        # Blue
+BPurple='\[\e[1;35m\]'      # Purple
+BCyan='\[\e[1;36m\]'        # Cyan
+BWhite='\[\e[1;37m\]'       # White
+BOchre='\[\e[38;5;95m\]'    # Ochre
 
 # Background
-On_Black='\e[40m'       # Black
-On_Red='\e[41m'         # Red
-On_Green='\e[42m'       # Green
-On_Yellow='\e[43m'      # Yellow
-On_Blue='\e[44m'        # Blue
-On_Purple='\e[45m'      # Purple
-On_Cyan='\e[46m'        # Cyan
-On_White='\e[47m'       # White
-On_Ochre='\e[38;5;95m'  # Ochre
+On_Black='\[\e[40m\]'       # Black
+On_Red='\[\e[41m\]'         # Red
+On_Green='\[\e[42m\]'       # Green
+On_Yellow='\[\e[43m\]'      # Yellow
+On_Blue='\[\e[44m\]'        # Blue
+On_Purple='\[\e[45m\]'      # Purple
+On_Cyan='\[\e[46m\]'        # Cyan
+On_White='\[\e[47m\]'       # White
+On_Ochre='\[\e[38;5;95m\]'  # Ochre
 
-NC="\e[m"               # Color Reset
+NC="\[\e[m\]"               # Color Reset
 
 # Functions for prompt
 
@@ -82,10 +82,10 @@ function git_branch {
 
   if [[ $git_status =~ $on_branch ]]; then
     local branch=${BASH_REMATCH[1]}
-    echo -e "\[$Purple\](\[\e[0;0m\]git\[$Purple\]) \[$Purple\](\[$(git_color)\]$branch\[$Purple\])\[$White\] "
+    echo -e "$Purple(${NC}git$Purple) $Purple($(git_color)$branch$Purple)$NC"
   elif [[ $git_status =~ $on_commit ]]; then
     local commit=${BASH_REMATCH[1]}
-    echo -e "\[$Purple\](\[\e[0;0m\]git\[$Purple\]) \[$Purple\](\[$(git_color)\]$commit\[$Purple\])\[$White\] "
+    echo -e "$Purple(${NC}git$Purple) $Purple($(git_color)$commit$Purple)$NC"
   fi
 }
 
@@ -112,8 +112,8 @@ if [ "$PS1" ]; then
   export PATH="$PATH:."
 
   # Prompt updates every commmand
-  # export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}\[$PCOLOR\]\u@\h\[\033[01;34m\] \w $(git_branch)\[$BBlue$PTAG\]\[\033[00m\] "'
-  export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}\[$PCOLOR\]\u@\h\[\033[01;34m\] \w \[$BBlue$PTAG\]\[\033[00m\] "'
+  # export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}$PCOLOR\u@\h\033[01;34m\] \w $(git_branch)\[$BBlue$PTAG\]\[\033[00m\] "'
+  export PROMPT_COMMAND='export PS1="${debian_chroot:+($debian_chroot)}$PCOLOR\u@\h $BBlue\w $(git_branch) $BBlue$PTAG$NC "'
 fi
 
 # Utility functions
