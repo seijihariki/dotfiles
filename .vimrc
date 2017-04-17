@@ -25,9 +25,6 @@ Plugin 'ervandew/supertab'
 " Checks syntax and compiles on save
 Plugin 'scrooloose/syntastic'
 
-" Easy tabulation
-Plugin 'godlygeek/tabular'
-
 "" Editor
 
 " Adds file tree and tab handling
