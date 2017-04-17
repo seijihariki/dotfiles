@@ -98,6 +98,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:nerdtree_tabs_open_on_console_startup = 1
 " Automatically find and select opened file
 let g:nerdtree_tabs_autofind=1
+" Keyboard Shortcut for toogling NERDTree
+map <C-m> :NERDTreeToggle<CR>
 
 "" Syntastic configuration
 " Syntastic recommended settings
