@@ -83,7 +83,7 @@ filetype on
 " Do not close Tagbar automatically
 let g:tagbar_autoclose = 0
 " Open Tagbar when opening c++ files
-autocmd FileType c,cpp TagbarOpen
+autocmd FileType * TagbarOpen
 
 "" Vim airline configuration
 " Set vim airline theme
