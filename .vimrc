@@ -1,93 +1,109 @@
-set nocompatible              " be iMproved, required
+" Just necessary
+set nocompatible
+" Turns on syntax highlighting
+syntax on
+" Set encoding to UTF-8
+set encoding=utf8
+
+""" Vundle configuration
+
+" Necessary for Vundle
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/Conque-GDB'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'othree/html5.vim'
+"" Util
 
-" All of your Plugins must be added before the following line
+" Adds tab auto-completion
+Plugin 'ervandew/supertab'
+
+" Checks syntax and compiles on save
+Plugin 'scrooloose/syntastic'
+
+" Easy tabulation
+Plugin 'godlygeek/tabular'
+
+"" Editor
+
+" Adds file tree and tab handling
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" Adds tagbar - function & class structure
+Plugin 'majutsushi/tagbar'
+
+" Vim airline - information bar
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+"" Colorschemes
+Plugin 'sickill/vim-monokai'
+
+"" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
+"" Basic editor configurations
+" Show number lines
 set number
+" Insert spaces instead of tabs
 set expandtab
+" Set tab size as 4 spaces
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" Turn on auto indent
 set autoindent
+" Max code line width
 set textwidth=80
+" Set bg as dark
 set background=dark
-
-"func! WordProcessorMode()
-" setlocal textwidth=80
-" setlocal smartindent
-" setlocal spell spelllang=en_us
-" setlocal noexpandtab
-"endfu
-
-"com! WP call WordProcessorMode()
-
-colorscheme solarized
-
-if has("syntax")
-  syntax on
-  filetype on
-  au BufNewFile,BufRead *.jq set filetype=javascript
-endif
-
-let g:airline_powerline_fonts = 1
-autocmd VimEnter * NERDTree
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline#extensions#tabline#enabled = 1
-
-let g:airline_symbols.space = "\ua0"
-let g:nerdtree_tabs_open_on_console_startup = 1
-
+" Disables swap file creation
+set noswapfile
+" Activate mouse handling
+set mouse=a
+" Activates 256 colors for terminal
+set t_Co=256
+" Sets colorscheme
+colorscheme monokai
+" Sets transparent bg
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
-let g:airline_theme='dark'
-
-set noswapfile
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-
-set mouse=a
-set t_Co=256
-hi Normal ctermbg=none
-
 " Highlight redundant whitespaces and tabs.
 highlight RedundantSpaces ctermbg=red
 match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+
+" Turns filetype back on
+filetype on
+
+"" Tagbar configuration
+" Do not close Tagbar automatically
+let g:tagbar_autoclose = 0
+" Open Tagbar on init
+autocmd VimEnter * TagbarOpen
+
+"" Vim airline configuration
+" Set vim airline theme
+let g:airline_theme = 'badwolf'
+" Activate powerline fonts
+let g:airline_powerline_fonts = 1
+" Activate tabline
+let g:airline#extensions#tabline#enabled = 1
+
+"" NERDTree configuration
+" Opens NERDTree on init
+let g:nerdtree_tabs_open_on_console_startup = 1
+" Automatically find and select opened file
+let g:nerdtree_tabs_autofind=1
+
+"" Syntastic configuration
+" Syntastic recommended settings
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
