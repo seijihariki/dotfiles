@@ -40,6 +40,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 "" Colorschemes
 Plugin 'sickill/vim-monokai'
+Plugin 'w0ng/vim-hybrid'
 
 "" All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,10 +68,10 @@ set mouse=a
 " Activates 256 colors for terminal
 set t_Co=256
 " Sets colorscheme
-colorscheme monokai
+colorscheme hybrid
 " Sets transparent bg
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
+"hi Normal ctermbg=none
+"highlight NonText ctermbg=none
 " Highlight redundant whitespaces and tabs.
 highlight RedundantSpaces ctermbg=red
 match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
@@ -81,8 +82,8 @@ filetype on
 "" Tagbar configuration
 " Do not close Tagbar automatically
 let g:tagbar_autoclose = 0
-" Open Tagbar on init
-autocmd VimEnter * TagbarOpen
+" Open Tagbar when opening c++ files
+autocmd FileType c,cpp TagbarOpen
 
 "" Vim airline configuration
 " Set vim airline theme

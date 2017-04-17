@@ -31,3 +31,12 @@
 [submodule ".vim/bundle/html5.vim"]
 	path = .vim/bundle/html5.vim
 	url = https://github.com/othree/html5.vim
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/vim-monokai"]
+	path = .vim/bundle/vim-monokai
+	url = https://github.com/sickill/vim-monokai
+[submodule ".vim/bundle/vim-hybrid"]
+	path = .vim/bundle/vim-hybrid
+	url = https://github.com/w0ng/vim-hybrid
