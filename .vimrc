@@ -80,6 +80,10 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 " Turns filetype back on
 filetype on
 
+"" YouCompleteMe configuration
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_collect_identifiers_from_tags_files = 1
+
 "" Tagbar configuration
 " Do not close Tagbar automatically
 let g:tagbar_autoclose = 0
