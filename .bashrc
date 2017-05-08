@@ -194,3 +194,6 @@ export GDM_LANG="en_US.utf8"
 if [ "$(which thefuck)" ]; then
     eval $(thefuck --alias)
 fi
+
+export WECHALLUSER="seijihariki"
+export WECHALLTOKEN="0EA1D-B4FB0-90BEE-1FFFA-02A71-2120B"

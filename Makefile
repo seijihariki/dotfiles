@@ -1,4 +1,4 @@
-files := bin .fonts .vimrc .vim .bashrc .bash_profile .inputrc .profile
+files := bin .fonts .nvimrc .vimrc .vim .bashrc .bash_profile .inputrc .profile .config
 home := $(HOME)
 
 pwd := $(shell pwd)
@@ -11,7 +11,7 @@ $(home)/%: $(pwd)/%
 	ln -fs $< $@
 
 gitsub:
-	git submodule update --init
+	git submodule update --init --recursive
 	
 clean:
 	rm -rf $(hmfiles)

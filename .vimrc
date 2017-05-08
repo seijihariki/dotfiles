@@ -20,7 +20,8 @@ Plugin 'VundleVim/Vundle.vim'
 "" Util
 
 " Adds tab auto-completion
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 
 " Checks syntax and compiles on save
 Plugin 'scrooloose/syntastic'

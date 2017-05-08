@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/vim-hybrid"]
 	path = .vim/bundle/vim-hybrid
 	url = https://github.com/w0ng/vim-hybrid
+[submodule ".vim/bundle/YouCompleteMe"]
+	path = .vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
