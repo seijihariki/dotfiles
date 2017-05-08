@@ -20,6 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 "" Util
 
 " Adds tab auto-completion
+Plugin 'Rip-Rip/clang_complete'
 Plugin 'ervandew/supertab'
 
 " Checks syntax and compiles on save
@@ -78,6 +79,17 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 " Turns filetype back on
 filetype on
+
+"" ClangComplete configuration
+let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:clang_complete_auto = 0
+let g:clang_complete_copen = 1
+let g:clang_snippets=1
+let g:clang_conceal_snippets=1
+set completeopt=menu,menuone
+
+"Supertab configuration
+let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
