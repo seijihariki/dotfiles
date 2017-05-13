@@ -48,6 +48,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "" Basic editor configurations
+" Make backspace work between lines
+set backspace=indent,eol,start
 " Show number lines
 set number
 " Insert spaces instead of tabs
@@ -89,7 +91,7 @@ let g:clang_conceal_snippets=1
 set completeopt=menu,menuone
 
 "Supertab configuration
-let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+let g:SuperTabDefaultCompletionType='context'
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
