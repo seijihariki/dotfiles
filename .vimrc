@@ -89,7 +89,7 @@ let g:clang_conceal_snippets=1
 set completeopt=menu,menuone
 
 "Supertab configuration
-let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+" let g:SuperTabDefaultCompletionType='context'
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
