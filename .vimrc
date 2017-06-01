@@ -48,6 +48,10 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "" Basic editor configurations
+" Make backspace work between lines
+set backspace=indent,eol,start
+" Turn on wrapping behaviour
+set whichwrap+=<,>,h,l,[,]
 " Show number lines
 set number
 " Insert spaces instead of tabs
