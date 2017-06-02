@@ -35,30 +35,41 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
 
 # Setup working environments
+MODE="base"
+mode() {
+    if [ -z "$1" ]
+    then
+        echo "Usage: $0 <mode>"
+    else
+        mode_$1
+        MODE="$1"
+    fi
+}
+
 TMOUT=5
 
-base() {
+mode_base() {
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs root_indicator context dir vcs battery)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
 }
 
-coding() {
+mode_coding() {
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status root_indicator dir vcs battery)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
 }
 
-testing() {
+mode_testing() {
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status disk_usage swap load ram background_jobs root_indicator vcs dir)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
     TMOUT=1
 }
 
-hacking() {
+mode_hacking() {
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context root_indicator dir)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(public_ip time)
 }
 
-base
+mode_base
 
 # Get prompt size
 lp_size() {
