@@ -123,6 +123,20 @@ hacking() {
 }
 
 base
+
+# Get prompt size
+lp_size() {
+    LEFT_P="$(print_icon MULTILINE_FIRST_PROMPT_PREFIX)%f%b%k$(build_left_prompt)"
+    local zero='%([BSUbfksu]|([FK]|){*})'
+    echo "${#${(S%%)LEFT_P//$~zero/}}"
+}
+
+rp_size() {
+    LEFT_P="$RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX"
+    local zero='%([BSUbfksu]|([FK]|){*})'
+    echo "${#${(S%%)LEFT_P//$~zero/}}"
+}
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
