@@ -1,17 +1,20 @@
-files := bin .fonts .zshrc .oh-my-zsh .vimrc .vim .bashrc .bash_profile .inputrc .profile
+files := bin .fonts .zshrc .oh-my-zsh .vimrc .vim .bashrc .bash_profile .inputrc .profile .zsh_themes
 home := $(HOME)
 
 pwd := $(shell pwd)
 hmfiles := $(patsubst %,$(home)/%,$(files))
 lcfiles := $(patsubst %,$(pwd)/%,$(files))
 
-install: $(hmfiles) gitsub
+install: $(hmfiles) gitsub zsh
 
 $(home)/%: $(pwd)/%
 	ln -fs $< $@
 
 gitsub:
 	git submodule update --init
-	
+
+zsh:
+	ln -fs $(pwd)/.zsh_themes/* $(pwd)/.oh-my-zsh/themes/
+
 clean:
 	rm -rf $(hmfiles)

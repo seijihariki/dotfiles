@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/clang_complete"]
 	path = .vim/bundle/clang_complete
 	url = https://github.com/Rip-Rip/clang_complete
+[submodule ".zsh_themes/powerlevel9k"]
+	path = .zsh_themes/powerlevel9k
+	url = git@github.com:bhilburn/powerlevel9k.git
