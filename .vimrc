@@ -20,6 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 "" Util
 
 " Adds tab auto-completion
+Plugin 'Rip-Rip/clang_complete'
 Plugin 'ervandew/supertab'
 
 " Checks syntax and compiles on save
@@ -47,6 +48,10 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "" Basic editor configurations
+" Make backspace work between lines
+set backspace=indent,eol,start
+" Turn on wrapping behaviour
+set whichwrap+=<,>,h,l,[,]
 " Show number lines
 set number
 " Insert spaces instead of tabs
@@ -78,6 +83,17 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 " Turns filetype back on
 filetype on
+
+"" ClangComplete configuration
+let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:clang_complete_auto = 0
+let g:clang_complete_copen = 1
+let g:clang_snippets=1
+let g:clang_conceal_snippets=1
+set completeopt=menu,menuone
+
+"Supertab configuration
+" let g:SuperTabDefaultCompletionType='context'
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
