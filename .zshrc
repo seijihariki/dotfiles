@@ -34,55 +34,6 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
 
-# Setup working environments
-MODE="base"
-mode() {
-    if [ -z "$1" ]
-    then
-        echo "Usage: $0 <mode>"
-    else
-        mode_$1
-        MODE="$1"
-    fi
-}
-
-TMOUT=5
-
-mode_base() {
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs root_indicator context dir vcs battery)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-}
-
-mode_coding() {
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status root_indicator dir vcs battery)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-}
-
-mode_testing() {
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status disk_usage swap load ram background_jobs root_indicator vcs dir)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-    TMOUT=1
-}
-
-mode_hacking() {
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context root_indicator dir)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(public_ip time)
-}
-
-mode_base
-
-# Get prompt size
-lp_size() {
-    LEFT_P="$(print_icon MULTILINE_FIRST_PROMPT_PREFIX)%f%b%k$(build_left_prompt)"
-    local zero='%([BSUbfksu]|([FK]|){*})'
-    echo "${#${(S%%)LEFT_P//$~zero/}}"
-}
-
-rp_size() {
-    LEFT_P="$RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX"
-    local zero='%([BSUbfksu]|([FK]|){*})'
-    echo "${#${(S%%)LEFT_P//$~zero/}}"
-}
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -168,6 +119,101 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Setup working environments
+MODE="base"
+mode() {
+    if [ -z "$1" ]
+    then
+        echo "Usage: $0 <mode>"
+    else
+        mode_$1
+        MODE="$1"
+    fi
+}
+
+TMOUT=5
+
+elements=()
+
+
+# Get prompt size
+lp_size() {
+    local LEFT_P="$(print_icon MULTILINE_FIRST_PROMPT_PREFIX)%f%b%k$(build_left_prompt)"
+    local zero='%([BSUbfksu]|([FK]|){*})'
+    echo "${#${(S%%)LEFT_P//$~zero/}}"
+}
+
+rp_size() {
+    local LEFT_P="$RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX"
+    local zero='%([BSUbfksu]|([FK]|){*})'
+    echo "${#${(S%%)LEFT_P//$~zero/}}"
+}
+
+# Set elements
+make_prompt_from_els() {
+    local unsorted_els="$1"
+    IFS=$'\n' els=($(sort -t\- -k 3 -g <<<"${unsorted_els[*]}"))
+    unset IFS
+
+    # Set elements for powerline
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=()
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+    for item in ${els}
+    do
+        local side=$(echo ${item} | cut -d\- -f4)
+        local disp=$(echo ${item} | cut -d\- -f2)
+
+        if [ ${side} = "l" ]
+        then
+            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=("${disp}")
+        else
+            POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=("${disp}")
+        fi
+    done
+}
+
+set_prompt() {
+    IFS=$'\n' priority_sorted=($(sort -r -t\- -k 1 -g <<<"${elements[*]}"))
+    unset IFS
+
+    IFS=$'\n' curr_els=("${elements[*]}")
+    unset IFS
+
+    make_prompt_from_els "${curr_els}"
+
+    while [ $(($(lp_size) + $(rp_size))) -gt ${COLUMNS} ]
+    do
+        curr_els="$(echo ${curr_els} | sort -r -t\- -k 1 -g)"
+        curr_els="$(echo ${curr_els} | tail -n +2)"
+        make_prompt_from_els "${curr_els}"
+    done
+}
+
+# Mode definitions
+mode_base() {
+    elements=('2-status-0-l' '5-background_jobs-1-l' '4-context-2-l' '0-dir-3-l' '1-vcs-4-l' '3-battery-5-l' '7-root_indicator-0-r' '6-time-1-r' )
+    set_prompt
+}
+
+mode_coding() {
+    elements=('2-status-0-l' '4-background_jobs-1-l' '0-dir-2-l' '1-vcs-3-l' '3-battery-4-l' '6-root_indicator-0-r' '5-time-1-r' )
+    set_prompt
+}
+
+mode_testing() {
+    elements=('1-status-0-l' '5-disk_usage-1-l' '6-swap-2-l' '4-load-3-l' '3-ram-4-l' '2-background_jobs-5-l' '0-dir-6-l' '7-vcs-7-l' '8-root_indicator-0-r' '9-time-1-r' )
+    TMOUT=1
+    set_prompt
+}
+
+mode_hacking() {
+    elements=('1-status-0-l' '2-background_jobs-1-l' '3-context-2-l' '0-dir-3-l' '5-public_ip-0-r' '4-root_indicator-1-r' '6-time-2-r')
+    set_prompt
+}
+
+mode base
+
+# Prompt refresh
 TRAPALRM() {
     zle reset-prompt
 }
@@ -178,7 +224,10 @@ TRAPWINCH() {
     if [ ${COLUMNS} -ne ${LAST_COLUMNS} ]
     then
         clear
+        set_prompt
         zle reset-prompt
         LAST_COLUMNS=${COLUMNS}
     fi
 }
+
+
