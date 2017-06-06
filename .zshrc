@@ -84,7 +84,11 @@ source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias rm='rm -I'
 export PATH="$PATH:."
-export PATH=$PATH:$HOME/bin
+[ -d "$HOME/scripts" ] && export PATH=$PATH:$HOME/scripts
+[ -d "$HOME/.local/bin" ] && export PATH=$PATH:$HOME/.local/bin
+[ -d "/sbin" ] && export PATH=$PATH:/sbin
+[ -d "$HOME/bin" ] && export PATH=$PATH:$HOME/bin
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
  export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.rvm/scripts/rvm"
@@ -118,6 +122,8 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias remake-prompt="set_prompt"
 
 # Setup working environments
 MODE="base"
