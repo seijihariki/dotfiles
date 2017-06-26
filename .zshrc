@@ -137,7 +137,7 @@ mode() {
     fi
 }
 
-TMOUT=5
+#TMOUT=5
 
 elements=()
 
@@ -208,7 +208,7 @@ mode_coding() {
 
 mode_testing() {
     elements=('1-status-0-l' '5-disk_usage-1-l' '6-swap-2-l' '4-load-3-l' '3-ram-4-l' '2-background_jobs-5-l' '0-dir-6-l' '7-vcs-7-l' '8-root_indicator-0-r' '9-time-1-r' )
-    TMOUT=1
+#    TMOUT=1
     set_prompt
 }
 
@@ -220,20 +220,20 @@ mode_hacking() {
 mode base
 
 # Prompt refresh
-TRAPALRM() {
-    zle reset-prompt
-}
+#TRAPALRM() {
+#    zle reset-prompt
+#}
 
 # Clear screen if resized
 LAST_COLUMNS=0
-TRAPWINCH() {
-    if [ ${COLUMNS} -ne ${LAST_COLUMNS} ]
-    then
-        clear
-        set_prompt
-        zle reset-prompt
-        LAST_COLUMNS=${COLUMNS}
-    fi
-}
+#TRAPWINCH() {
+#    if [ ${COLUMNS} -ne ${LAST_COLUMNS} ]
+#    then
+#        clear
+#        set_prompt
+#        zle reset-prompt
+#        LAST_COLUMNS=${COLUMNS}
+#    fi
+#}
 
 
