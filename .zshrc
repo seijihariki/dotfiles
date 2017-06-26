@@ -229,11 +229,10 @@ LAST_COLUMNS=0
 #TRAPWINCH() {
 #    if [ ${COLUMNS} -ne ${LAST_COLUMNS} ]
 #    then
-#        clear
 #        set_prompt
 #        zle reset-prompt
+#        clear
 #        LAST_COLUMNS=${COLUMNS}
 #    fi
 #}
-
 
