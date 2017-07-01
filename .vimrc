@@ -46,7 +46,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 
 " Color hex codes and color names
-Plugin 'chrisbra/colorizer'
+" Plugin 'chrisbra/colorizer'
 
 "" Colorschemes
 Plugin 'sickill/vim-monokai'
@@ -83,6 +83,8 @@ set noswapfile
 set mouse=a
 " Activates 256 colors for terminal
 set t_Co=256
+" Adds 80 column limit highlight
+set cc=80
 " Sets colorscheme
 colorscheme hybrid
 " Sets transparent bg
@@ -105,12 +107,16 @@ let g:clang_conceal_snippets=1
 let g:clang_snippets_engine='clang_complete'
 set completeopt=menu,menuone
 
+" Compatibily tricks with autopairs
+let g:AutoPairsMapCR = 0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
+
 " Supertab fall-back
 let g:SuperTabDefaultCompletionType='context'
 
 " Start colorizer
-let g:colorizer_auto_color = 1
-let g:colorizer_fgcontrast = 0
+"let g:colorizer_auto_color = 1
+"let g:colorizer_fgcontrast = 0
 "let g:colorizer_colornames = 0
 
 "" Tagbar configuration
