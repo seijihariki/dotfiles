@@ -18,3 +18,6 @@ zsh:
 
 clean:
 	rm -rf $(hmfiles)
+
+update:
+	git pull --recurse-submodules
