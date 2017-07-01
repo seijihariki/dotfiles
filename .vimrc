@@ -39,6 +39,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" Git gutter - shows changed lines on file
+Plugin 'airblade/vim-gitgutter'
+
 "" Colorschemes
 Plugin 'sickill/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
@@ -48,6 +51,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 "" Basic editor configurations
+" Sets update time - defaults to 4s (Useful for Git Gutter)
+set updatetime=250
 " Make backspace work between lines
 set backspace=indent,eol,start
 " Turn on wrapping behaviour
