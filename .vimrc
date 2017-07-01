@@ -26,6 +26,9 @@ Plugin 'ervandew/supertab'
 " Checks syntax and compiles on save
 Plugin 'scrooloose/syntastic'
 
+" Adds automatic closing of brackets
+Plugin 'raimondi/delimitmate'
+
 "" Editor
 
 " Adds file tree and tab handling
