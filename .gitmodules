@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/delimitmate"]
 	path = .vim/bundle/delimitmate
 	url = https://github.com/raimondi/delimitmate
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs

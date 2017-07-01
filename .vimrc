@@ -27,7 +27,7 @@ Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 
 " Adds automatic closing of brackets
-Plugin 'raimondi/delimitmate'
+Plugin 'jiangmiao/auto-pairs'
 
 "" Editor
 
