@@ -45,6 +45,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " Git gutter - shows changed lines on file
 Plugin 'airblade/vim-gitgutter'
 
+" Color hex codes and color names
+Plugin 'chrisbra/colorizer'
+
 "" Colorschemes
 Plugin 'sickill/vim-monokai'
 Plugin 'w0ng/vim-hybrid'
@@ -104,6 +107,11 @@ set completeopt=menu,menuone
 
 " Supertab fall-back
 let g:SuperTabDefaultCompletionType='context'
+
+" Start colorizer
+let g:colorizer_auto_color = 1
+let g:colorizer_fgcontrast = 0
+"let g:colorizer_colornames = 0
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
