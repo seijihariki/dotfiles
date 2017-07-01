@@ -90,16 +90,18 @@ let g:clang_complete_auto = 0
 let g:clang_complete_copen = 1
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
+
+let g:clang_snippets_engine='clang_complete'
 set completeopt=menu,menuone
 
-"Supertab configuration
-" let g:SuperTabDefaultCompletionType='context'
+" Supertab fall-back
+let g:SuperTabDefaultCompletionType='context'
 
 "" Tagbar configuration
 " Do not close Tagbar automatically
 let g:tagbar_autoclose = 0
 " Open Tagbar when opening c++ files
-autocmd FileType * TagbarOpen
+autocmd FileType *.cpp *.c TagbarOpen
 
 "" Vim airline configuration
 " Set vim airline theme
