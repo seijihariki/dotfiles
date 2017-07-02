@@ -29,6 +29,9 @@ Plugin 'scrooloose/syntastic'
 " Adds automatic closing of brackets
 Plugin 'jiangmiao/auto-pairs'
 
+" Autoformat
+Plugin 'Chiel92/vim-autoformat'
+
 "" Editor
 
 " Adds file tree and tab handling
@@ -106,6 +109,9 @@ let g:clang_conceal_snippets=1
 
 let g:clang_snippets_engine='clang_complete'
 set completeopt=menu,menuone
+
+" Autoformat configuration
+silent! map <F2> :Autoformat<CR>
 
 " Compatibily tricks with autopairs
 let g:AutoPairsMapCR = 0
