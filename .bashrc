@@ -10,6 +10,7 @@ alias bd='psql -h data.ime.usp.br -p 23001 -U u7577469 -d bd_7577469'
 alias fuck='sudo $(history -p \!\!)'
 alias pmac="ifconfig | sed -E \"s/ +/ /g\" | grep -E \"^[^ ].*HWaddr\" | awk '{print \$1 \"\\t\" \$NF}'"
 alias git_upload="git add --all; git commit; git push"
+which scp 1>/dev/null && alias cp=scp
 
 shopt -s cdspell
 shopt -s cdable_vars
