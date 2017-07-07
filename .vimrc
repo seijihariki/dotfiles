@@ -104,7 +104,6 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 filetype on
 
 "" ClangComplete configuration
-let g:clang_library_path='/usr/lib/libclang.so'
 let g:clang_complete_auto = 0
 let g:clang_complete_copen = 1
 let g:clang_snippets=1
@@ -132,7 +131,7 @@ let g:SuperTabDefaultCompletionType='context'
 " Do not close Tagbar automatically
 let g:tagbar_autoclose = 0
 " Open Tagbar when opening c++ files
-autocmd FileType *.cpp *.c TagbarOpen
+autocmd FileType * nested :call tagbar#autoopen()
 
 "" Vim airline configuration
 " Set vim airline theme
