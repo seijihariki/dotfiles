@@ -1,0 +1,67 @@
+#!/usr/bin/python3
+import subprocess
+import sys
+try:
+    from telegram.ext import Updater
+    from telegram.ext import CommandHandler
+except ImportError:
+    print ("It seems python-telegram-bot is not installed...")
+    q = "Install for current user? [y/N] "
+    res = None
+    while True:
+        res = input(q).lower().strip()
+        if len(res) == 0:
+            res = 'n'
+        res = res[0]
+        if res == 'y' or res == 'n':
+            res = res == 'y'
+            break
+
+    if res:
+        print ("Running 'pip3 install --user python-telegram-bot'...")
+        code = subprocess.Popen('pip3 install --user python-telegram-bot',
+                shell=True,
+                executable='/bin/bash').wait()
+        if code != 0:
+            print ("Failed installing!")
+            sys.exit(-1)
+
+        print ("Installed successfuly!")
+    else:
+        sys.exit(0)
+
+token = '444817117:AAGUe3TZu4x3nwEmhLh0CgGLuzYdxoIKdmM'
+
+if len(sys.argv) < 2:
+    print ("Usage: {} <command>".format(sys.argv[0]))
+    sys.exit(0)
+
+cmd = ' '.join(sys.argv[1:])
+
+print ("Running command '{}'. Will notify when the program ends!".format(cmd))
+
+updater = Updater(token=token)
+dispatcher = updater.dispatcher
+
+chat_id = []
+def link(bot, update):
+    if update.message.chat_id in chat_id:
+        return
+    chat_id.append(update.message.chat_id)
+    print ("Will notify '{} {}' when job is over!".
+            format(update.message.from_user.first_name,
+                update.message.from_user.last_name))
+    bot.send_message(chat_id=chat_id[-1],
+            text="Will notify you when job '{}' ends!".format(cmd))
+
+link_handler = CommandHandler('link', link)
+dispatcher.add_handler(link_handler)
+
+updater.start_polling()
+
+code = subprocess.Popen(cmd, shell=True, executable='/bin/bash').wait()
+
+for chat in chat_id:
+    updater.bot.send_message(chat_id=chat,
+            text="Job '{}' ended with code {:d}".format(cmd, code))
+updater.stop()
