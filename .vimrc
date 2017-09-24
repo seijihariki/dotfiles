@@ -22,6 +22,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Adds tab auto-completion
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'ervandew/supertab'
+Plugin 'davidhalter/jedi-vim'
 
 " Checks syntax and compiles on save
 Plugin 'scrooloose/syntastic'
@@ -121,6 +122,7 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 
 " Supertab fall-back
 let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabContextDefaultCompletionType ="<C-X><C-O>"
 
 " Start colorizer
 "let g:colorizer_auto_color = 1

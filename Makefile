@@ -14,7 +14,7 @@ gitsub:
 	git submodule update --init
 
 zsh:
-	ln -fs $(pwd)/.zsh_themes/* $(pwd)/.oh-my-zsh/themes/
+	@ln -fs $(pwd)/.zsh_themes/* $(pwd)/.oh-my-zsh/themes/
 
 clean:
 	rm -rf $(hmfiles)
