@@ -48,6 +48,7 @@ Plugin 'majutsushi/tagbar'
 " Vim airline - information bar
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
 
 " Git gutter - shows changed lines on file
 Plugin 'airblade/vim-gitgutter'
@@ -122,7 +123,7 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 
 " Supertab fall-back
 let g:SuperTabDefaultCompletionType='context'
-let g:SuperTabContextDefaultCompletionType ="<C-X><C-O>"
+"let g:SuperTabContextDefaultCompletionType ="<C-X><C-O>"
 
 " Start colorizer
 "let g:colorizer_auto_color = 1
