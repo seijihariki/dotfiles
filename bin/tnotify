@@ -1,6 +1,12 @@
 #!/usr/bin/python3
+import signal
 import subprocess
 import sys
+import os
+
+token_file = os.path.expanduser('~/.config/telegram_notify_token')
+
+# Import telegram libs and install them if not installed
 try:
     from telegram.ext import Updater
     from telegram.ext import CommandHandler
@@ -30,8 +36,12 @@ except ImportError:
     else:
         sys.exit(0)
 
-token = '444817117:AAGUe3TZu4x3nwEmhLh0CgGLuzYdxoIKdmM'
+# Telegram bot token
+token = ''
+with open(token_file) as f:
+    token = f.readline().strip('\n')
 
+# Parse args
 if len(sys.argv) < 2:
     print ("Usage: {} <command>".format(sys.argv[0]))
     sys.exit(0)
@@ -40,9 +50,19 @@ cmd = ' '.join(sys.argv[1:])
 
 print ("Running command '{}'. Will notify when the program ends!".format(cmd))
 
+# Start bot server
 updater = Updater(token=token)
 dispatcher = updater.dispatcher
 
+# Handle system messages
+def sigint(signal, frame):
+    for chat in chat_id:
+        updater.bot.send_message(chat_id=chat,
+                text="Job '{}' was cancelled!".format(cmd))
+
+signal.signal(signal.SIGINT, sigint)
+
+# Handle commands
 chat_id = []
 def link(bot, update):
     if update.message.chat_id in chat_id:
@@ -54,14 +74,20 @@ def link(bot, update):
     bot.send_message(chat_id=chat_id[-1],
             text="Will notify you when job '{}' ends!".format(cmd))
 
+# Define commands
 link_handler = CommandHandler('link', link)
 dispatcher.add_handler(link_handler)
 
+# Start server
 updater.start_polling()
 
+# Start process
 code = subprocess.Popen(cmd, shell=True, executable='/bin/bash').wait()
 
+# Notify everyone
 for chat in chat_id:
     updater.bot.send_message(chat_id=chat,
             text="Job '{}' ended with code {:d}".format(cmd, code))
+
+# Stop server
 updater.stop()
