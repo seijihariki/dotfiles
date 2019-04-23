@@ -195,3 +195,9 @@ export GDM_LANG="en_US.utf8"
 if [ "$(which thefuck)" ]; then
     eval $(thefuck --alias)
 fi
+
+# Disable bell
+if [ -n "$DISPLAY" ]; then
+  xset b off
+fi
+

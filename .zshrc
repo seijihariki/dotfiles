@@ -7,6 +7,7 @@ export TERM="xterm-256color"
 
 # Aliases
 which scp 1>/dev/null && alias cp=scp
+which yay 1>/dev/null && alias update="yay -Syyu --sudoloop --noconfirm"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -239,4 +240,12 @@ LAST_COLUMNS=0
 #    fi
 #}
 
-export PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
