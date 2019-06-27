@@ -7,7 +7,8 @@ export TERM="xterm-256color"
 
 # Aliases
 which scp 1>/dev/null && alias cp=scp
-which yay 1>/dev/null && alias update="yay -Syyu --sudoloop --noconfirm"
+which yay 1>/dev/null && alias yay-update="yay -Syyu --sudoloop --noconfirm"
+which yay 1>/dev/null && alias yay-clean="yay -Rns $(yay -Qtdq)"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
