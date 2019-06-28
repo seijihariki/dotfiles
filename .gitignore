@@ -1,2 +1,5 @@
 .save
 .vim/
+.oh-my-zsh/
+.zsh_themes/
+.fonts/
