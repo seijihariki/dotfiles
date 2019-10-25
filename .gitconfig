@@ -1,5 +1,7 @@
 [user]
 	email = victorseijih@gmail.com
 	name = Victor Seiji Hariki
-[push]
-	default = simple
+[core]
+	editor = nvim
+[commit]
+	gpgsign = true
