@@ -6,8 +6,11 @@ export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
 
 # Aliases
+which git 1>/dev/null && alias gstac="git stash clear"
+
 which scp 1>/dev/null && alias cp=scp
 which yay 1>/dev/null && alias yay-update="yay -Syyu --sudoloop --noconfirm"
+which yay 1>/dev/null && alias yay-install="yay -S --sudoloop --noconfirm"
 which yay 1>/dev/null && alias yay-clean="yay -Rns $(yay -Qtdq)"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -81,7 +84,7 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git docker-compose zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
