@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Packing SSH Keys..."
+zip /tmp/ssh_keys.zip ~/.ssh/id_rsa*
+
+echo "Packing PGP Keys..."
+gpg -o /tmp/gpg_keys.keys --export-secret-keys --armor
+
+echo "Zipping them together..."
+zip /tmp/zipped_keys.zip /tmp/ssh_keys.zip /tmp/gpg_keys.keys 
+
+echo "Encrypting zipped keys..."
+encrypt /tmp/zipped_keys.zip
+
+echo "Removing Original Files..."
+rm /tmp/gpg_keys.keys
+rm /tmp/ssh_keys.zip 
+rm /tmp/zipped_keys.zip
+
+echo "Finished!"

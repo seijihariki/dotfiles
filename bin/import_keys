@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo -e "\033[31mUsage: $0 <file>\033[0m"
+    exit -1
+fi
+
+if [ ! -f "$1" ]; then
+    echo -e "\033[31m$1 Is not a file\033[0m"
+    exit -2
+fi
+
+decrypt $1
+
+echo "Decrypting zipped keys"
