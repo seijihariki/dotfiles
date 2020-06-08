@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
@@ -16,30 +23,30 @@ which yay 1>/dev/null && alias yay-clean="yay -Rns $(yay -Qtdq)"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_NODE_VERSION_BACKGROUND='28'
-POWERLEVEL9K_NODE_VERSION_FOREGROUND='15'
-POWERLEVEL9K_BACKGROUND_JOBS_ICON='\uf0ae'
-POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-POWERLEVEL9K_STATUS_OK_BACKGROUND="black"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="black"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+POWERLEVEL10K_MODE='nerdfont-complete'
+POWERLEVEL10K_NODE_VERSION_BACKGROUND='28'
+POWERLEVEL10K_NODE_VERSION_FOREGROUND='15'
+POWERLEVEL10K_BACKGROUND_JOBS_ICON='\uf0ae'
+POWERLEVEL10K_VCS_STAGED_ICON='\u00b1'
+POWERLEVEL10K_VCS_UNTRACKED_ICON='\u25CF'
+POWERLEVEL10K_VCS_UNSTAGED_ICON='\u00b1'
+POWERLEVEL10K_VCS_INCOMING_CHANGES_ICON='\u2193'
+POWERLEVEL10K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+POWERLEVEL10K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL10K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL10K_STATUS_OK_BACKGROUND="black"
+POWERLEVEL10K_STATUS_OK_FOREGROUND="green"
+POWERLEVEL10K_STATUS_ERROR_BACKGROUND="black"
+POWERLEVEL10K_STATUS_ERROR_FOREGROUND="red"
+POWERLEVEL10K_TIME_FORMAT="%D{%H:%M}"
 
-POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
+POWERLEVEL10K_CHANGESET_HASH_LENGTH=6
+POWERLEVEL10K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL10K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL10K_PROMPT_ON_NEWLINE=true
+POWERLEVEL10K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL10K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -84,14 +91,14 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" ❯ "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker-compose zsh-syntax-highlighting)
+plugins=(git docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias rm='rm -I'
-export PATH="$PATH:."
+export PATH="$PATH:.:./bin"
 [ -d "$HOME/scripts" ] && export PATH=$PATH:$HOME/scripts
 [ -d "$HOME/.local/bin" ] && export PATH=$PATH:$HOME/.local/bin
 [ -d "/sbin" ] && export PATH=$PATH:/sbin
@@ -151,17 +158,17 @@ elements=()
 
 
 # Get prompt size
-lp_size() {
-    local LEFT_P="$(print_icon MULTILINE_FIRST_PROMPT_PREFIX)%f%b%k$(build_left_prompt)"
-    local zero='%([BSUbfksu]|([FK]|){*})'
-    echo "${#${(S%%)LEFT_P//$~zero/}}"
-}
+#lp_size() {
+#    local LEFT_P="$(print_icon MULTILINE_FIRST_PROMPT_PREFIX)%f%b%k$(build_left_prompt)"
+#    local zero='%([BSUbfksu]|([FK]|){*})'
+#    echo "${#${(S%%)LEFT_P//$~zero/}}"
+#}
 
-rp_size() {
-    local LEFT_P="$RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX"
-    local zero='%([BSUbfksu]|([FK]|){*})'
-    echo "${#${(S%%)LEFT_P//$~zero/}}"
-}
+#rp_size() {
+#    local LEFT_P="$RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX"
+#    local zero='%([BSUbfksu]|([FK]|){*})'
+#    echo "${#${(S%%)LEFT_P//$~zero/}}"
+#}
 
 # Set elements
 make_prompt_from_els() {
@@ -170,8 +177,8 @@ make_prompt_from_els() {
     unset IFS
 
     # Set elements for powerline
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=()
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+    POWERLEVEL10K_LEFT_PROMPT_ELEMENTS=()
+    POWERLEVEL10K_RIGHT_PROMPT_ELEMENTS=()
     for item in ${els}
     do
         local side=$(echo ${item} | cut -d\- -f4)
@@ -179,53 +186,53 @@ make_prompt_from_els() {
 
         if [ ${side} = "l" ]
         then
-            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=("${disp}")
+            POWERLEVEL10K_LEFT_PROMPT_ELEMENTS+=("${disp}")
         else
-            POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=("${disp}")
+            POWERLEVEL10K_RIGHT_PROMPT_ELEMENTS+=("${disp}")
         fi
     done
 }
 
-set_prompt() {
-    IFS=$'\n' priority_sorted=($(sort -r -t\- -k 1 -g <<<"${elements[*]}"))
-    unset IFS
-
-    IFS=$'\n' curr_els=("${elements[*]}")
-    unset IFS
-
-    make_prompt_from_els "${curr_els}"
-
-    while [ $(($(lp_size) + $(rp_size))) -gt ${COLUMNS} ]
-    do
-        curr_els="$(echo ${curr_els} | sort -r -t\- -k 1 -g)"
-        curr_els="$(echo ${curr_els} | tail -n +2)"
-        make_prompt_from_els "${curr_els}"
-    done
-}
+#set_prompt() {
+#    IFS=$'\n' priority_sorted=($(sort -r -t\- -k 1 -g <<<"${elements[*]}"))
+#    unset IFS
+#
+#    IFS=$'\n' curr_els=("${elements[*]}")
+#    unset IFS
+#
+#    make_prompt_from_els "${curr_els}"
+#
+#    while [ $(($(lp_size) + $(rp_size))) -gt ${COLUMNS} ]
+#    do
+#        curr_els="$(echo ${curr_els} | sort -r -t\- -k 1 -g)"
+#        curr_els="$(echo ${curr_els} | tail -n +2)"
+#        make_prompt_from_els "${curr_els}"
+#    done
+#}
 
 # Mode definitions
-mode_base() {
-    elements=('2-status-0-l' '5-background_jobs-1-l' '4-context-2-l' '0-dir-3-l' '1-vcs-4-l' '3-battery-5-l' '7-root_indicator-0-r' '6-time-1-r' )
-    set_prompt
-}
+#mode_base() {
+#    elements=('2-status-0-l' '5-background_jobs-1-l' '4-context-2-l' '0-dir-3-l' '1-vcs-4-l' '3-battery-5-l' '7-root_indicator-0-r' '6-time-1-r' )
+#    set_prompt
+#}
 
-mode_coding() {
-    elements=('2-status-0-l' '4-background_jobs-1-l' '0-dir-2-l' '1-vcs-3-l' '3-battery-4-l' '6-root_indicator-0-r' '5-time-1-r' )
-    set_prompt
-}
+#mode_coding() {
+#    elements=('2-status-0-l' '4-background_jobs-1-l' '0-dir-2-l' '1-vcs-3-l' '3-battery-4-l' '6-root_indicator-0-r' '5-time-1-r' )
+#    set_prompt
+#}
 
-mode_testing() {
-    elements=('1-status-0-l' '5-disk_usage-1-l' '6-swap-2-l' '4-load-3-l' '3-ram-4-l' '2-background_jobs-5-l' '0-dir-6-l' '7-vcs-7-l' '8-root_indicator-0-r' '9-time-1-r' )
+#mode_testing() {
+#    elements=('1-status-0-l' '5-disk_usage-1-l' '6-swap-2-l' '4-load-3-l' '3-ram-4-l' '2-background_jobs-5-l' '0-dir-6-l' '7-vcs-7-l' '8-root_indicator-0-r' '9-time-1-r' )
 #    TMOUT=1
-    set_prompt
-}
+#    set_prompt
+#}
 
-mode_hacking() {
-    elements=('1-status-0-l' '2-background_jobs-1-l' '3-context-2-l' '0-dir-3-l' '5-public_ip-0-r' '4-root_indicator-1-r' '6-time-2-r')
-    set_prompt
-}
+#mode_hacking() {
+#    elements=('1-status-0-l' '2-background_jobs-1-l' '3-context-2-l' '0-dir-3-l' '5-public_ip-0-r' '4-root_indicator-1-r' '6-time-2-r')
+#    set_prompt
+#}
 
-mode base
+#mode base
 
 # Prompt refresh
 #TRAPALRM() {
@@ -253,3 +260,6 @@ if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/pa
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

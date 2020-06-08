@@ -1,4 +1,4 @@
-files := bin .fonts .zshrc .zsh .oh-my-zsh .vimrc .vim .bashrc .bash_profile .inputrc .profile .zsh_themes .config .gdbinit .gitconfig
+files := bin .fonts .zshrc .zsh .oh-my-zsh .vimrc .vim .bashrc .bash_profile .inputrc .profile .zsh_themes .config .gdbinit .gitconfig .p10k.zsh
 home := $(HOME)
 
 pwd := $(shell pwd)
