@@ -25,9 +25,12 @@ export TERM="xterm-256color"
 which git 1>/dev/null && alias gstac="git stash clear"
 
 which scp 1>/dev/null && alias cp=scp
+
 which yay 1>/dev/null && alias yay-update="yay -Syyu --sudoloop --noconfirm"
 which yay 1>/dev/null && alias yay-install="yay -S --sudoloop --noconfirm"
-which yay 1>/dev/null && alias yay-clean="yay -Rns $(yay -Qtdq)"
+which yay 1>/dev/null && alias yay-clean='yay -Rns $(yay -Qtdq)'
+
+alias rm='rm -I'
 
 # Load powerlevel
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -39,7 +42,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias rm='rm -I'
+# Add custom directories to PATH
 export PATH="$PATH:.:./bin"
 [ -d "$HOME/scripts" ] && export PATH=$PATH:$HOME/scripts
 [ -d "$HOME/.local/bin" ] && export PATH=$PATH:$HOME/.local/bin
