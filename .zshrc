@@ -30,6 +30,8 @@ which yay 1>/dev/null && alias yay-update="yay -Syyu --sudoloop --noconfirm"
 which yay 1>/dev/null && alias yay-install="yay -S --sudoloop --noconfirm"
 which yay 1>/dev/null && alias yay-clean='yay -Rns $(yay -Qtdq)'
 
+which dig 1>/dev/null && alias myip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | sed 's/\"//g'"
+
 alias rm='rm -I'
 
 # Load powerlevel
